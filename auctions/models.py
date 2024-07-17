@@ -1,0 +1,14 @@
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+
+class User(AbstractUser):
+    pass
+
+class Listing(models.Model):
+    title = models.CharField(max_length=25)
+    description = models.TextField()
+    starting_bid = models.DecimalField(max_digits=10, decimal_places=4)
+    url_image = models.CharField(max_length=100, null=True)
+    category = models.CharField(max_length=30, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
