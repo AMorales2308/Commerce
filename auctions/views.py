@@ -9,7 +9,16 @@ from .models import User, Listing
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    listings = Listing.objects.all()
+    for listing in listings:
+        print(listing.title)
+        print(listing.description)
+        print(listing.starting_bid)
+        print(listing.is_closed)
+        print(listing.url_image)
+        print(listing.title)
+        print(listing.user.username)
+    return render(request, "auctions/index.html", {"listings": listings})
 
 
 def login_view(request):

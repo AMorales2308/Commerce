@@ -1,7 +1,29 @@
 {% extends "auctions/layout.html" %}
+{% load static %}
 
 {% block body %}
     <h2>Active Listings</h2>
 
-    TODO
+    <div class="body-div">
+        {% for listing in listings %}
+            <div class="listing-card">
+                <h3>{{ listing.title }}</h3>
+                <div class="card-image">
+                    {% if listing.url_image == "" %}
+                        <img src="{% static 'img/no_image_found.png' %}" alt="No image found">
+                    {% else %}
+                        <img src="{{ listing.url_image }}" alt="No image found">
+                    {% endif %}
+                </div>
+                <div class="price-description">
+                    <p><strong>Starting bid:</strong> ${{listing.starting_bid}}</p>
+                    <div class="description-div">
+                        <p>{{ listing.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            It is Empty
+        {% endfor %}
+    </div>
 {% endblock %}
